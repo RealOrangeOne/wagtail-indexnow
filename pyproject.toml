@@ -8,7 +8,7 @@ description = "A Wagtail package to automatically submit published pages for sea
 authors = [
     {name = "Jake Howard"},
 ]
-dynamic = ["version"]
+version = "0.2.0"
 readme = "README.md"
 classifiers = [
     "License :: OSI Approved",
@@ -20,7 +20,7 @@ classifiers = [
     "Framework :: Django :: 4.2",
     "Framework :: Django :: 5.1",
     "Framework :: Django :: 5.2",
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 5 - Production/Stable",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
