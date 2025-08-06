@@ -4,7 +4,6 @@ from urllib.parse import urlparse
 import requests
 from django.utils import timezone
 from wagtail import hooks
-from wagtail.models import Page
 
 from .utils import get_key
 
@@ -15,14 +14,14 @@ SHOULD_NOTIFY_PAGE_ATTRIBUTE = "_should_indexnow"
 
 @hooks.register("before_publish_page")
 def check_notify_page(request, page):
-    last_published_at = Page.objects.only("last_published_at").values_list(
-        "last_published_at", flat=True
-    )[0]
-
+    should_notify = (
+        not page.last_published_at
+        or (timezone.now() - timedelta(minutes=10)) >= page.last_published_at
+    )
     setattr(
         page,
         SHOULD_NOTIFY_PAGE_ATTRIBUTE,
-        (timezone.now() - timedelta(minutes=10)) >= last_published_at,
+        should_notify,
     )
 
 
